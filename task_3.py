@@ -25,7 +25,15 @@ class PointsForMeters:
 
 class TotalPoints(PointsForPlace, PointsForMeters):
     def get_total_points(self,place,meters):
-        total = PointsForPlace.get_points_for_place(place) + PointsForMeters.get_points_for_meters(meters)
+        place_total = super().get_points_for_place(place)
+        meters_total = super().get_points_for_meters(meters)
+        if type(place_total) == str and type(meters_total) == str:
+            return place_total + f'\n' + meters_total
+        if type(place_total) == str:
+            return place_total
+        if type(meters_total) == str:
+            return meters_total
+        total = place_total + meters_total
         return total
 
 points_for_place = PointsForPlace()
@@ -37,4 +45,4 @@ print(points_for_meters.get_points_for_meters(10))
 total_points = TotalPoints()
 print(total_points.get_points_for_place(10))
 print(total_points.get_points_for_meters(10))
-print(total_points.get_total_points(100,10))
+print(total_points.get_total_points(101,-2))

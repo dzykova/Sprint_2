@@ -10,7 +10,7 @@ class EmployeeSalary:
     
     def salary(self):
         salary = self.hours * self.hourly_payment
-        return f"Имя: {self.name}, Отработанные часы: {self.hours}, Почта: {self.email}, Зарплата: {salary}"
+        return salary
 
     @classmethod
     def get_hours(cls, name, rest_days, email):
